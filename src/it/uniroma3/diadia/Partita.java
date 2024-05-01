@@ -50,6 +50,13 @@ public class Partita {
 	public boolean vinta() {
 		return this.getStanzaCorrente() == this.labirinto.getStanzaVincente();
 	}
+	
+	/*
+	 * Restituisce vero se il giocatore ha ancora cfu a disposizione
+	 */
+	public boolean giocatoreIsVivo() {
+		return this.giocatore.getCfu() > 0;
+	}
 
 	/**
 	 * Restituisce vero se e solo se la partita e' finita
