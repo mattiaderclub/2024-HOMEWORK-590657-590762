@@ -34,4 +34,28 @@ public class StanzaBloccata extends Stanza {
 			return deviSbloccare;
 		return super.getDescrizione();     
     }
+	
+	public String getDirezioneBloccata() {
+		return this.direzioneBloccata;
+	}
+	
+	public String getAttrezzoSbloccante() {
+		return this.attrezzoSbloccante;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o == null || o.getClass() != this.getClass())
+			return false;
+		
+		StanzaBloccata that = (StanzaBloccata) o;
+		return super.equals(o) && this.getAttrezzoSbloccante().equals(that.getAttrezzoSbloccante())
+				&& this.getDirezioneBloccata().equals(that.getDirezioneBloccata());
+	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode() + this.getAttrezzoSbloccante().hashCode() +
+				this.getDirezioneBloccata().hashCode();
+	}
 }

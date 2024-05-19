@@ -20,7 +20,7 @@ public class ComandoFine implements Comando {
 
 	@Override
 	public String getNome() {
-		return this.NOME;
+		return ComandoFine.NOME;
 	}
 	
 	@Override

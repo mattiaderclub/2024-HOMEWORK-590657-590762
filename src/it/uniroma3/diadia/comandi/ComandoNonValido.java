@@ -20,7 +20,7 @@ public class ComandoNonValido implements Comando {
 	
 	@Override
 	public String getNome() {
-		return this.NOME;
+		return ComandoNonValido.NOME;
 	}
 	
 	@Override

@@ -22,7 +22,7 @@ public class ComandoPrendi implements Comando {
 		else {
 			if (partita.getStanzaCorrente().hasAttrezzo(this.nomeAttrezzo)) { // Se ho attrezzo nella stanza lo catturo
 				Attrezzo a = partita.getStanzaCorrente().getAttrezzo(this.nomeAttrezzo);
-				if (partita.getGiocatore().getBorsa().addAttrezzo(a)) // Se posso e riesco ad aggiungere l'attrezzo alla
+				if (partita.getGiocatore().getBorsa().addAttrezzo(a)) 	// Se posso e riesco ad aggiungere l'attrezzo alla
 																		// borsa lo rimuovo dalla stanza
 					partita.getStanzaCorrente().removeAttrezzo(a);
 				else
@@ -34,7 +34,7 @@ public class ComandoPrendi implements Comando {
 	
 	@Override
 	public String getNome() {
-		return this.NOME;
+		return ComandoPrendi.NOME;
 	}
 	
 	@Override

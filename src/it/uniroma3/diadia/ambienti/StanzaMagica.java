@@ -22,7 +22,7 @@ public class StanzaMagica extends Stanza {
 	public boolean addAttrezzo(Attrezzo attrezzo) {
 		this.contatoreAttrezziPosati++;
 		
-		if (this.contatoreAttrezziPosati > this.sogliaMagica)
+		if (this.isMagica())
 			attrezzo = this.modificaAttrezzo(attrezzo);
 		return super.addAttrezzo(attrezzo);
 	}
@@ -36,5 +36,32 @@ public class StanzaMagica extends Stanza {
 		nomeInvertito = nomeInvertito.reverse();
 		attrezzo = new Attrezzo(nomeInvertito.toString(), pesoX2);
 		return attrezzo;
+	}
+	
+	public boolean isMagica() {
+		return this.contatoreAttrezziPosati > this.sogliaMagica;
+	}
+	
+	public int getQuantiAttrezziPosati() {
+		return this.contatoreAttrezziPosati;
+	}
+	
+	public int getSoglia() {
+		return this.sogliaMagica;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o == null || o.getClass() != this.getClass())
+			return false;
+		
+		StanzaMagica that = (StanzaMagica) o;
+		return super.equals(o) && this.getQuantiAttrezziPosati() == that.getQuantiAttrezziPosati() 
+				&& this.getSoglia() == that.getSoglia();
+	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode() + this.getQuantiAttrezziPosati() + this.getSoglia();
 	}
 }

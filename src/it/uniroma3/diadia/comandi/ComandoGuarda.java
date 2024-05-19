@@ -21,7 +21,7 @@ public class ComandoGuarda implements Comando {
 
 	@Override
 	public String getNome() {
-		return this.NOME;
+		return ComandoGuarda.NOME;
 	}
 	
 	@Override

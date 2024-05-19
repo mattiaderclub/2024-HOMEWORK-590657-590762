@@ -22,7 +22,22 @@ public class Giocatore {
 	public int getCfu() {
 		return this.cfu;
 	}
+	
 	public void setCfu(int cfu) {
 		this.cfu = cfu;	
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o == null || o.getClass() != this.getClass())
+			return false;
+		
+		Giocatore that = (Giocatore) o;
+		return this.getCfu() == that.getCfu() && this.getBorsa().equals(that.getBorsa());
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.getClass().hashCode() + this.getCfu() + this.getBorsa().hashCode();
 	}
 }

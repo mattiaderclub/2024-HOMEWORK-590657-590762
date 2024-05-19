@@ -35,7 +35,7 @@ public class ComandoVai implements Comando {
 	
 	@Override
 	public String getNome() {
-		return this.NOME;
+		return ComandoVai.NOME;
 	}
 	
 	@Override

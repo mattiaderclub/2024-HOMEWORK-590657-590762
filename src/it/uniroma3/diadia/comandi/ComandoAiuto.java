@@ -23,7 +23,7 @@ public class ComandoAiuto implements Comando {
 
 	@Override
 	public String getNome() {
-		return this.NOME;
+		return ComandoAiuto.NOME;
 	}
 	
 	@Override

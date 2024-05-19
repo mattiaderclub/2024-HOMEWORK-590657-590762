@@ -8,6 +8,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.giocatore.Borsa;
 
 public class BorsaTest {
+	
 	private Borsa b1;
 	private Attrezzo a1;
 	
@@ -19,18 +20,18 @@ public class BorsaTest {
 	
 	@Test
 	public void testIsEmpty_BorsaVuota() {
-		assertTrue(b1.isEmpty());
+		assertTrue(b1.getAttrezzi().isEmpty());
 	}
 	@Test
 	public void testIsEmpty_BorsaConAttrezzo() {
 		b1.addAttrezzo(a1);
-		assertFalse(b1.isEmpty());
+		assertFalse(b1.getAttrezzi().isEmpty());
 	}
 	@Test
 	public void testIsEmpty_AttrezzoRimosso() {
 		b1.addAttrezzo(a1);
 		b1.removeAttrezzo("attrezzo");
-		assertTrue(b1.isEmpty());
+		assertTrue(b1.getAttrezzi().isEmpty());
 	}
 
 	
@@ -65,5 +66,5 @@ public class BorsaTest {
 	public void testRemoveAttrezzo_RimuoviNessunAttrezzo() {
 		b1.addAttrezzo(a1);
 		assertEquals(null, b1.removeAttrezzo("arma"));
-	}
+	}	
 }

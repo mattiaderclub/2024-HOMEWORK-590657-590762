@@ -17,5 +17,22 @@ public class StanzaBuia extends Stanza {
 		else
 			return super.getDescrizione();     
     }
-
+	
+	public String getAttrezzoLuminoso() {
+		return this.attrezzoLuminoso;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o == null || o.getClass() != this.getClass())
+			return false;
+		
+		StanzaBuia that = (StanzaBuia) o;
+		return super.equals(o) && this.getAttrezzoLuminoso().equals(that.getAttrezzoLuminoso());
+	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode() + this.getAttrezzoLuminoso().hashCode();
+	}
 }

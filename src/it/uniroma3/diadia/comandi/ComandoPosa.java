@@ -17,7 +17,6 @@ public class ComandoPosa implements Comando {
 	
 	@Override
 	public void esegui(Partita partita) {
-		io.mostraMessaggio("Grazie di aver giocato!"); // Si desidera smettere
 		if (nomeAttrezzo == null)
 			io.mostraMessaggio("Cosa vuoi posare ?");	
 		else {
@@ -35,7 +34,7 @@ public class ComandoPosa implements Comando {
 	
 	@Override
 	public String getNome() {
-		return this.NOME;
+		return ComandoPosa.NOME;
 	}
 	
 	@Override

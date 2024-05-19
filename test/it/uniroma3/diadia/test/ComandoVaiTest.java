@@ -6,7 +6,10 @@ import org.junit.Test;
 
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.ComandoVai;
+import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.DiaDia;
+import it.uniroma3.diadia.Fixture;
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
@@ -14,14 +17,25 @@ import it.uniroma3.diadia.Partita;
 public class ComandoVaiTest {
 
 	private IO io;
+	
+	private Fixture simulazione;
+	private DiaDia gioco;
+	
 	private Stanza s1;
+	private Labirinto labirinto;
 	private Partita p;
 	private Comando vai;
 
 	@Before
 	public void setUp() {
 		this.io = new IOConsole();
-		this.p = new Partita();
+		
+		this.simulazione = new Fixture();
+		Labirinto labirinto = this.simulazione.fixturePartitaDifficile();
+		this.gioco = new DiaDia(labirinto, io);
+		
+		this.labirinto = new Labirinto();
+		this.p = new Partita(this.labirinto);
 		this.vai = new ComandoVai();
 		this.vai.setIO(io);
 	}
@@ -47,5 +61,43 @@ public class ComandoVaiTest {
 		this.vai.setParametro("nord");
 		this.vai.esegui(p);
 		assertNotNull(this.p.getStanzaCorrente());
+	}
+	
+	@Test
+	public void testComandoVaiSimulazione() {
+		this.gioco.processaIstruzione("vai nord");
+		assertEquals(this.gioco.getPartita().getLabirinto().getStanzaIniziale().
+				getStanzaAdiacente("nord"), this.gioco.getPartita().getStanzaCorrente());
+		assertEquals("Bagno", this.gioco.getPartita().getStanzaCorrente().getNome());
+		
+		this.gioco.processaIstruzione("vai est");
+		assertNull(this.gioco.getPartita().getStanzaCorrente().
+				getStanzaAdiacente("est"));
+		assertEquals("Bagno", this.gioco.getPartita().getStanzaCorrente().getNome());
+
+		this.gioco.processaIstruzione("vai sud");
+		assertEquals(this.gioco.getPartita().getLabirinto().getStanzaIniziale(), 
+				this.gioco.getPartita().getStanzaCorrente());
+		assertEquals("Atrio", this.gioco.getPartita().getStanzaCorrente().getNome());
+		
+		this.gioco.processaIstruzione("vai");
+		assertEquals(this.gioco.getPartita().getLabirinto().getStanzaIniziale(), 
+				this.gioco.getPartita().getStanzaCorrente());
+		assertEquals("Atrio", this.gioco.getPartita().getStanzaCorrente().getNome());
+				
+		this.gioco.processaIstruzione("vai ovest");
+		assertEquals(this.gioco.getPartita().getLabirinto().getStanzaIniziale().
+				getStanzaAdiacente("ovest"), this.gioco.getPartita().getStanzaCorrente());
+		assertEquals("Studio", this.gioco.getPartita().getStanzaCorrente().getNome());
+		
+		this.gioco.processaIstruzione("vai ovest");
+		assertEquals(this.gioco.getPartita().getLabirinto().getStanzaIniziale().
+				getStanzaAdiacente("ovest").getStanzaAdiacente("ovest"), this.gioco.getPartita().getStanzaCorrente());
+		assertEquals("Riservata", this.gioco.getPartita().getStanzaCorrente().getNome());
+		
+		this.gioco.processaIstruzione("vai nord");
+		assertEquals(this.gioco.getPartita().getLabirinto().getStanzaIniziale().
+				getStanzaAdiacente("ovest").getStanzaAdiacente("ovest"), this.gioco.getPartita().getStanzaCorrente());
+		assertEquals("Riservata", this.gioco.getPartita().getStanzaCorrente().getNome());
 	}
 }
