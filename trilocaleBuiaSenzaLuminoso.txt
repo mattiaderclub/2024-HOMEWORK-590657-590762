@@ -1,0 +1,11 @@
+Stanze:Atrio,Biblioteca,Caverna
+Buie:Caverna torcia
+Bloccate:
+Magiche:
+Inizio:Atrio
+Vincente:Biblioteca
+Attrezzi:lanterna 3 Atrio
+Cani:
+Maghi:
+Streghe:
+Uscite:Caverna sud Atrio,Atrio nord Caverna,Biblioteca ovest Caverna,Caverna est Biblioteca

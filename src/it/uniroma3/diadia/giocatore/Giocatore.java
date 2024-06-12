@@ -1,8 +1,9 @@
 package it.uniroma3.diadia.giocatore;
 
+import static it.uniroma3.diadia.properties.CostantiDiaDia.CFU_INIZIALI;
+
 public class Giocatore {
-	
-	static final private int CFU_INIZIALI = 20;	
+		
 	private Borsa borsa;
 	private int cfu;
 	

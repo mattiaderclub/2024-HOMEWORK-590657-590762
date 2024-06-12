@@ -1,15 +1,18 @@
 package it.uniroma3.diadia.test;
 
 import static org.junit.Assert.*;
+
+import java.util.Scanner;
+
 import org.junit.*;
 import org.junit.Test;
 
-import it.uniroma3.diadia.comandi.Comando;
+import it.uniroma3.diadia.comandi.AbstractComando;
 import it.uniroma3.diadia.comandi.ComandoVai;
+import it.uniroma3.diadia.properties.Fixture;
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.DiaDia;
-import it.uniroma3.diadia.Fixture;
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
@@ -24,20 +27,25 @@ public class ComandoVaiTest {
 	private Stanza s1;
 	private Labirinto labirinto;
 	private Partita p;
-	private Comando vai;
+	private AbstractComando vai;
 
 	@Before
 	public void setUp() {
-		this.io = new IOConsole();
-		
-		this.simulazione = new Fixture();
-		Labirinto labirinto = this.simulazione.fixturePartitaDifficile();
-		this.gioco = new DiaDia(labirinto, io);
-		
-		this.labirinto = new Labirinto();
-		this.p = new Partita(this.labirinto);
-		this.vai = new ComandoVai();
-		this.vai.setIO(io);
+		try (Scanner scanner = new Scanner(System.in)) {
+			this.io = new IOConsole(scanner);
+			
+			this.simulazione = new Fixture();
+			Labirinto labirinto = this.simulazione.fixturePartitaDifficile();
+			this.gioco = new DiaDia(labirinto, io);
+			
+			this.labirinto = new Labirinto("creoLabirinto.txt");
+			this.p = new Partita(this.labirinto);
+			this.vai = new ComandoVai();
+			this.vai.setIO(io);
+		}
+		catch (Exception e) {
+			System.out.println("Errore!!!");
+		}
 	}
 
 	@Test

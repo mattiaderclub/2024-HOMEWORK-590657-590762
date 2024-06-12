@@ -1,14 +1,16 @@
 package it.uniroma3.diadia.test;
 
 import static org.junit.Assert.*;
+
+import java.util.Scanner;
+
 import org.junit.*;
-import org.junit.Test;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
-import it.uniroma3.diadia.comandi.Comando;
+import it.uniroma3.diadia.comandi.AbstractComando;
 import it.uniroma3.diadia.comandi.ComandoPosa;
+import it.uniroma3.diadia.properties.Fixture;
 import it.uniroma3.diadia.DiaDia;
-import it.uniroma3.diadia.Fixture;
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
@@ -24,22 +26,27 @@ public class ComandoPosaTest {
 	private Attrezzo attrezzo;
 	private Labirinto labirinto;
 	private Partita p;
-	private Comando posa;
-	
+	private AbstractComando posa;
+
 	@Before
 	public void setUp() {
-		this.io = new IOConsole();
-		
-		this.simulazione = new Fixture();
-		Labirinto labirinto = this.simulazione.fixtureTrilocale_ConStanzaBloccata_ConAttrezzoSbloccante();
-		this.gioco = new DiaDia(labirinto, io);
-		this.gioco.processaIstruzione("prendi chiave");
-		this.gioco.processaIstruzione("prendi martello");
-		
-		this.labirinto = new Labirinto();
-		this.p = new Partita(this.labirinto);
-		this.posa = new ComandoPosa();
-		this.posa.setIO(io);
+		try (Scanner scanner = new Scanner(System.in)) {
+			this.io = new IOConsole(scanner);
+			
+			this.simulazione = new Fixture();
+			Labirinto labirinto = this.simulazione.fixtureTrilocale_ConStanzaBloccata_ConAttrezzoSbloccante();
+			this.gioco = new DiaDia(labirinto, io);
+			this.gioco.processaIstruzione("prendi chiave");
+			this.gioco.processaIstruzione("prendi martello");
+			
+			this.labirinto = new Labirinto("creoLabirinto.txt");
+			this.p = new Partita(this.labirinto);
+			this.posa = new ComandoPosa();
+			this.posa.setIO(io);
+		}
+		catch (Exception e) {
+			System.out.println("Errore!!!");
+		}
 	}
 	
 	@Test

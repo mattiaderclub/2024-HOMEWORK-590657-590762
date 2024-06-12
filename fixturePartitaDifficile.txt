@@ -1,0 +1,11 @@
+Stanze:Atrio,Biblioteca,Cantina,Bagno,Studio,Riservata
+Buie:Cantina lampada
+Bloccate:Riservata nord martello
+Magiche:
+Inizio:Atrio
+Vincente:Biblioteca
+Attrezzi:pistola 5 Atrio,martello 2 Cantina,tubo 2 Bagno,lampada 4 Bagno,penna 0 Studio
+Cani:
+Maghi:
+Streghe:
+Uscite:Atrio sud Cantina,Cantina nord Atrio,Bagno sud Atrio,Atrio nord Bagno,Studio est Atrio,Atrio ovest Studio,Biblioteca sud Riservata,Riservata nord Biblioteca,Studio ovest Riservata,Riservata est Studio

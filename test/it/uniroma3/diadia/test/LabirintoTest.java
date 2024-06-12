@@ -1,38 +1,47 @@
 package it.uniroma3.diadia.test;
 
 import static org.junit.Assert.*;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import it.uniroma3.diadia.ambienti.Labirinto;
 
 
 public class LabirintoTest {
+	
+	private Labirinto labirinto;
 
+	@Before
+	public void setUp() {
+		this.labirinto = new Labirinto("labirinto1.txt");
+	}
+	
 	@Test
 	public void testGetStanzaIniziale_UgualeAAtrio() {
-		assertEquals("Atrio", new Labirinto().getStanzaIniziale().getNome());
+		assertEquals("Atrio", this.labirinto.getStanzaIniziale().getNome());
 	}
 	@Test
 	public void testGetStanzaIniziale_DiversaDaBiblioteca() {
-		assertNotEquals("Biblioteca", new Labirinto().getStanzaIniziale().getNome());
+		assertNotEquals("Biblioteca", this.labirinto.getStanzaIniziale().getNome());
 	}
 	@Test
 	public void testGetStanzaIniziale_DiversaDaNull() {
-		assertNotNull(new Labirinto().getStanzaIniziale());
+		assertNotNull(this.labirinto.getStanzaIniziale());
 	}
 	
 	
 	
 	@Test
 	public void testGetStanzaVincente_UgualeABiblioteca() {
-		assertEquals("Biblioteca", new Labirinto().getStanzaVincente().getNome());
+		assertEquals("Biblioteca", this.labirinto.getStanzaVincente().getNome());
 	}
 	@Test
 	public void testGetStanzaVincente_DiversaDaAtrio() {
-		assertNotEquals("Atrio", new Labirinto().getStanzaVincente().getNome());
+		assertNotEquals("Atrio", this.labirinto.getStanzaVincente().getNome());
 	}
 	@Test
 	public void testGetStanzaVincente_DiversaDaNull() {
-		assertNotNull(new Labirinto().getStanzaVincente());
+		assertNotNull(this.labirinto.getStanzaVincente());
 	}
 }

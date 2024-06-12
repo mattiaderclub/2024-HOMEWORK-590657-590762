@@ -12,10 +12,10 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import static it.uniroma3.diadia.properties.CostantiDiaDia.DEFAULT_PESO_MAX_BORSA;
 
 public class Borsa {
 	
-	public final static int DEFAULT_PESO_MAX_BORSA = 10;
 	private Map<String, Attrezzo> attrezzi;
 	private int pesoMax;
 	

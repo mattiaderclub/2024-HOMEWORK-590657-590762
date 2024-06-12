@@ -15,7 +15,7 @@ public class PartitaTest {
 	
 	@Before
 	public void setUp() {
-		this.labirinto = new Labirinto();
+		this.labirinto = new Labirinto("labirinto1.txt");
 		this.partita = new Partita(labirinto);
 	}
 	

@@ -1,0 +1,11 @@
+Stanze:Atrio,Biblioteca,Riservata
+Buie:
+Bloccate:Riservata est chiave
+Magiche:
+Inizio:Atrio
+Vincente:Biblioteca
+Attrezzi:chiave 1 Atrio,martello 4 Atrio
+Cani:
+Maghi:
+Streghe:
+Uscite:Riservata sud Atrio,Atrio nord Riservata,Biblioteca ovest Riservata,Riservata est Biblioteca

@@ -2,14 +2,16 @@ package it.uniroma3.diadia.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Scanner;
+
 import org.junit.*;
 import org.junit.Test;
 
 import it.uniroma3.diadia.DiaDia;
-import it.uniroma3.diadia.Fixture;
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.properties.Fixture;
 
 public class FixtureTest {
 	
@@ -18,8 +20,13 @@ public class FixtureTest {
 	
 	@Before
 	public void setUp() {
-		this.io = new IOConsole();
-		this.simulazione = new Fixture();
+		try (Scanner scanner = new Scanner(System.in)) {
+			this.io = new IOConsole(scanner);
+			this.simulazione = new Fixture();
+		}
+		catch (Exception e) {
+			System.out.println("Errore!!!");
+		}
 	}
 	
 	@Test
@@ -193,7 +200,7 @@ public class FixtureTest {
 		assertTrue(gioco.getPartita().getStanzaCorrente().hasAttrezzo("martello"));
 		
 		String bloccata = "Stanza bloccata in direzione " + "est" + "\nPrendi "
-				+ "chiave" + "e posalo nella stanza";
+				+ "chiave " + "e posalo nella stanza";
 		assertEquals(bloccata, gioco.getPartita().getStanzaCorrente().getDescrizione());
 		
 		gioco.processaIstruzione("vai est");

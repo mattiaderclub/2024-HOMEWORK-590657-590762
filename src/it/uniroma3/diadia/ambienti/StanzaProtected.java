@@ -1,6 +1,8 @@
 package it.uniroma3.diadia.ambienti;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import static it.uniroma3.diadia.properties.CostantiDiaDia.NUMERO_MASSIMO_ATTREZZI;
+import static it.uniroma3.diadia.properties.CostantiDiaDia.NUMERO_MASSIMO_DIREZIONI;
 
 /**
  * Classe Stanza - una stanza in un gioco di ruolo.
@@ -14,9 +16,6 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 */
 
 public class StanzaProtected {
-	
-	static final private int NUMERO_MASSIMO_DIREZIONI = 4;
-	static final private int NUMERO_MASSIMO_ATTREZZI = 10;
 	
 	protected String nome;
 	protected Attrezzo[] attrezzi;

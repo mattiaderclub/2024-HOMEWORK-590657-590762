@@ -1,0 +1,11 @@
+Stanze:Atrio,Biblioteca
+Buie:
+Bloccate:
+Magiche:
+Inizio:Atrio
+Vincente:Biblioteca
+Attrezzi:martello 3 Atrio
+Cani:
+Maghi:
+Streghe:
+Uscite:Biblioteca sud Atrio,Atrio nord Biblioteca

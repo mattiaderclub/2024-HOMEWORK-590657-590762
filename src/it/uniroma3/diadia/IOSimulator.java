@@ -8,8 +8,8 @@ public class IOSimulator implements IO {
 	private List<String> messaggiDaLeggere;
 	private List<String> messaggiProdotti;
 	private int indiceLettura;
-	private int indiceAggiunta;
-	
+	private int indiceAggiunta;	
+
 	public IOSimulator(List<String> comandi) {
 		this.messaggiDaLeggere = comandi;
 		this.messaggiProdotti = new ArrayList<String>();
@@ -24,7 +24,7 @@ public class IOSimulator implements IO {
 	public String leggiRiga() {
 		String stringa = this.messaggiDaLeggere.get(indiceLettura);
 		this.indiceLettura++;
-		return stringa;	
+		return stringa;
 	}
 
 	/*
@@ -32,7 +32,7 @@ public class IOSimulator implements IO {
 	 */
 	@Override
 	public void mostraMessaggio(String messaggio) {
-		this.messaggiProdotti.add(indiceAggiunta, messaggio);
+		this.messaggiProdotti.add(indiceAggiunta, messaggio);;
 		this.indiceAggiunta++;
 	}
 	

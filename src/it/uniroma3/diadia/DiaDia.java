@@ -1,10 +1,12 @@
 package it.uniroma3.diadia;
 
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
-import it.uniroma3.diadia.comandi.Comando;
+import it.uniroma3.diadia.comandi.AbstractComando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
-import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
+import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
+import static it.uniroma3.diadia.properties.CostantiDiaDia.MESSAGGIO_BENVENUTO;
+
+import java.util.Scanner;
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -18,15 +20,6 @@ import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
  */
 
 public class DiaDia {
-
-	static final private String MESSAGGIO_BENVENUTO = ""
-			+ "Ti trovi nell'Universita', ma oggi e' diversa dal solito...\n"
-			+ "Meglio andare al piu' presto in biblioteca a studiare. Ma dov'e'?\n"
-			+ "I locali sono popolati da strani personaggi, " + "alcuni amici, altri... chissa!\n"
-			+ "Ci sono attrezzi che potrebbero servirti nell'impresa:\n"
-			+ "puoi raccoglierli, usarli, posarli quando ti sembrano inutili\n"
-			+ "o regalarli se pensi che possano ingraziarti qualcuno.\n\n"
-			+ "Per conoscere le istruzioni usa il comando 'aiuto'.";
 
 	private Partita partita;
 	private IO console;
@@ -47,8 +40,8 @@ public class DiaDia {
 	}
 
 	public boolean processaIstruzione(String istruzione) {
-		Comando comandoDaEseguire;
-		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica();
+		AbstractComando comandoDaEseguire;
+		FabbricaDiComandi factory = new FabbricaDiComandiRiflessiva();
 		
 		comandoDaEseguire = factory.costruisciComando(istruzione);
 		comandoDaEseguire.esegui(this.partita);
@@ -70,18 +63,14 @@ public class DiaDia {
 	public static void main(String[] argc) {
 		/* N.B. unica istanza di IOConsole
 		di cui sia ammessa la creazione */
-		IO io = new IOConsole();
-		Labirinto labirinto = new LabirintoBuilder()
-				.addStanzaIniziale("LabCampusOne")
-				.addStanza("Aula")
-				.addAttrezzo("spada", 3)
-				.addStanzaVincente("Biblioteca")
-				.addAttrezzo("torcia", 5)
-				.addAdiacenza("Aula","LabCampusOne","nord")
-				.addAdiacenza("LabCampusOne","Aula","sud")
-				.addAdiacenza("LabCampusOne","Biblioteca","ovest")
-				.getLabirinto();		
-		DiaDia gioco = new DiaDia(labirinto, io);
-		gioco.gioca();
+		try (Scanner scanner = new Scanner(System.in)) {
+			IO io = new IOConsole(scanner);
+			Labirinto labirinto = new Labirinto("fixturePartitaDifficile.txt");
+			DiaDia gioco = new DiaDia(labirinto, io);
+			gioco.gioca();
+		}
+		catch (Exception e) {
+			System.out.println("Errore!!!");
+		}
 	}
 }
